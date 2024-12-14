@@ -1,3 +1,4 @@
+from datetime import datetime
 from tkinter import *
 from tkinter import filedialog as fd
 import os
@@ -13,7 +14,10 @@ dir = fd.askdirectory(title='Выберите папку с изображеие
 if dir:
     for file in os.listdir(dir):
         if file.lower().endswith(("jpg","jpeg","png")):
-            print(file)
+            filepath = os.path.join(dir, file)
+            lt = os.path.datetime(filepath)
+            ft = datetime.fromtimestamp(lt).strftime("%d-%m-%Y %H:%M")
+            print(f"{file:<25} - Последние изминения: {ft}")
 
 window.mainloop()
 
